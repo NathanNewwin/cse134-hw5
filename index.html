@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portfolio home page for Nathan Nguyen, a recent UCSD computer science graduate.">
+  <title>Nathan Nguyen - Developer | Homepage</title>
+  <link rel="stylesheet" href="styles/style.css">
+  <style>
+    header,
+    nav,
+    main,
+    section,
+    article,
+    footer,
+    form,
+    fieldset,
+    project-card {
+      border-width: 1px;
+      border-style: solid;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <p><a href="index.html">Nathan Nguyen</a></p>
+
+    <nav aria-label="Primary navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="linktoresumedownload.html">Resume</a></li>
+        <li><a href="experiments.html">HTML Experiments</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <svg width="120" height="80" viewBox="0 0 120 80" role="img" aria-labelledby="portfolio-mark-title">
+      <title id="portfolio-mark-title">Portfolio mark</title>
+      <rect x="10" y="10" width="100" height="60" fill="none" stroke="black"></rect>
+      <circle cx="60" cy="40" r="20" fill="none" stroke="black"></circle>
+    </svg>
+
+    <h1>Nathan Nguyen</h1>
+
+    <section>
+      <h2>Introduction</h2>
+      <p>
+        I am a <span>recent UC San Diego computer science graduate</span>
+        interested in building <strong>practical, reliable software</strong>.
+        My work focuses on clear
+        implementation, readable documentation, and systems that are useful to
+        the people who depend on them.
+      </p>
+      <p>
+        I am especially interested in backend development, data-focused tools,
+        web applications, and developer workflows that make complex information
+        easier to understand and maintain.
+      </p>
+    </section>
+
+    <section>
+      <h2>Skills</h2>
+      <ul>
+        <li>Python programming and scripting</li>
+        <li>SQL and relational database fundamentals</li>
+        <li>HTML and semantic web structure</li>
+        <li>JavaScript and CSS fundamentals</li>
+        <li>Data analysis and organization</li>
+        <li>Git, GitHub, and technical documentation</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Featured Projects</h2>
+      <article>
+        <header>
+          <h3>Flow Launcher Brave Profiles</h3>
+        </header>
+        <picture>
+          <source srcset="assets/images/placeholder.svg" type="image/svg+xml">
+          <img src="assets/images/placeholder.svg" alt="Placeholder image for the Flow Launcher Brave Profiles project" width="800" height="450">
+        </picture>
+        <p>
+          A personal Flow Launcher plugin that helps open and manage Brave browser
+          profiles from a keyboard driven workflow.
+        </p>
+        <p><a href="https://github.com/NathanNewwin/Flow.Launcher.Plugin.BraveProfiles">View the Flow Launcher plugin repository</a></p>
+      </article>
+
+      <article>
+        <header>
+          <h3>CSE 151B Spring 2026 Competition</h3>
+        </header>
+        <picture>
+          <source srcset="assets/images/placeholder.svg" type="image/svg+xml">
+          <img src="assets/images/placeholder.svg" alt="Placeholder image for the CSE 151B competition project" width="800" height="450">
+        </picture>
+        <p>
+          A machine learning competition submission for mathematical reasoning
+          using Python, vLLM, model sampling, voting, and final answer repair.
+        </p>
+        <p><a href="https://github.com/NathanNewwin/151B_SP26_Competition">View the CSE 151B competition repository</a></p>
+      </article>
+    </section>
+    <noscript>
+      <p>
+        JavaScript is disabled. The portfolio content and navigation remain
+        available, but not everything will be fully interactive.
+        Please enable JavaScript for the full experience.
+      </p>
+    </noscript>
+  </main>
+
+  <footer>
+    <form action="#" method="post">
+      <fieldset>
+        <legend>Contact Me</legend>
+
+        <p>
+          <label for="footer-contact-name">
+            Name
+            <input id="footer-contact-name" name="name" type="text" autocomplete="name" required>
+          </label>
+        </p>
+
+        <p>
+          <label for="footer-contact-email">
+            Email
+            <input id="footer-contact-email" name="email" type="email" autocomplete="email" required>
+          </label>
+        </p>
+
+        <p>
+          <label for="footer-contact-message">
+            Message
+            <textarea id="footer-contact-message" name="message" rows="5" required></textarea>
+          </label>
+        </p>
+
+        <button type="submit">Send Message</button>
+      </fieldset>
+    </form>
+
+    <p>&copy; 2026 Nathan Nguyen</p>
+
+    <a href="gear.html">Gear</a>
+
+    <nav aria-label="Contact links">
+      <ul>
+        <li><a href="mailto:nathan@example.com">Email</a></li>
+        <li><a href="https://www.linkedin.com/in/your-profile">LinkedIn</a></li>
+        <li><a href="https://github.com/your-username">GitHub</a></li>
+      </ul>
+    </nav>
+
+  </footer>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="HTML element experiments for CSE 134B HW2.">
+  <title>Nathan Nguyen - Developer | HTML experiments</title>
+  <link rel="stylesheet" href="styles/style.css">
+  <style>
+    header,
+    nav,
+    main,
+    section,
+    article,
+    footer,
+    form,
+    fieldset {
+      border-width: 1px;
+      border-style: solid;
+    }
+
+    experiment-example {
+      display: block;
+      border-width: 1px;
+      border-style: solid;
+      border-color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <p><a href="index.html">Nathan Nguyen</a></p>
+
+    <nav aria-label="Primary navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="linktoresumedownload.html">Resume</a></li>
+        <li><a href="experiments.html">HTML Experiments</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>HTML Experiments</h1>
+
+    <section>
+      <h2>Inline Style Element</h2>
+      <experiment-example>
+        <p>A semantic CSS custom element for a red border.</p>
+      </experiment-example>
+    </section>
+
+    <section>
+      <h2>Hello World Custom Element</h2>
+      <p>
+        Prints "Hello World!" within the browsers console without modifying the DOM.
+      </p>
+      <hello-world></hello-world>
+    </section>
+
+    <section>
+      <h2>Template Element</h2>
+      <p>
+        The template element stores HTML content that is not rendered when the
+        page initially loads.
+      </p>
+      <template id="project-template">
+        <article>
+          <h3>Template Project</h3>
+          <p>This content remains inside the template and remains unrendered.</p>
+        </article>
+      </template>
+    </section>
+
+    <section>
+      <h2>Audio Element</h2>
+      <p>
+        This audio element demonstrates native browser audio playback.
+      </p>
+      <audio controls>
+        <source src="assets/audio/introduction.wav" type="audio/wav">
+        Your browser does not support the audio element.
+      </audio>
+    </section>
+
+    <section>
+      <h2>Video Element</h2>
+      <p>
+        This video element demonstrates native browser video playback.
+      </p>
+      <video controls width="640">
+        <source src="assets/video/project-demo.mp4" type="video/mp4">
+        Your browser does not support the video element.
+      </video>
+    </section>
+
+    <section>
+      <h2>Canvas Element</h2>
+      <p>
+        The canvas below contains a small JavaScript-generated drawing.
+      </p>
+      <canvas id="demo-canvas" width="300" height="150">
+        Your browser does not support the canvas element.
+      </canvas>
+    </section>
+
+    <section>
+      <h2>MathML Extra Credit</h2>
+      <math display="block">
+        <mi>E</mi>
+        <mo>=</mo>
+        <mi>m</mi>
+        <msup>
+          <mi>c</mi>
+          <mn>2</mn>
+        </msup>
+      </math>
+      <p>
+        MathML consists of special tags that allow mathematical formulas and notations to be written on web pages.
+      </p>
+    </section>
+
+    <noscript>
+      <p>
+        JavaScript is disabled. The portfolio content remains available, but
+        the console and canvas demonstrations will not run.
+      </p>
+    </noscript>
+  </main>
+
+  <footer>
+    <form action="#" method="post">
+      <fieldset>
+        <legend>Contact Me</legend>
+
+        <p>
+          <label for="footer-contact-name">
+            Name
+            <input id="footer-contact-name" name="name" type="text" autocomplete="name" required>
+          </label>
+        </p>
+
+        <p>
+          <label for="footer-contact-email">
+            Email
+            <input id="footer-contact-email" name="email" type="email" autocomplete="email" required>
+          </label>
+        </p>
+
+        <p>
+          <label for="footer-contact-message">
+            Message
+            <textarea id="footer-contact-message" name="message" rows="5" required></textarea>
+          </label>
+        </p>
+
+        <button type="submit">Send Message</button>
+      </fieldset>
+    </form>
+
+    <p>&copy; 2026 Nathan Nguyen</p>
+
+    <a href="gear.html">Gear</a>
+
+    <nav aria-label="Contact links">
+      <ul>
+        <li><a href="mailto:nathan@example.com">Email</a></li>
+        <li><a href="https://www.linkedin.com/in/your-profile">LinkedIn</a></li>
+        <li><a href="https://github.com/your-username">GitHub</a></li>
+      </ul>
+    </nav>
+
+  </footer>
+
+  <script>
+    class HelloWorld extends HTMLElement {
+      connectedCallback() {
+        console.log("Hello World!");
+      }
+    }
+
+    customElements.define("hello-world", HelloWorld);
+
+    const canvas = document.querySelector("#demo-canvas");
+    const context = canvas.getContext("2d");
+
+    context.strokeRect(20, 20, 260, 110);
+    context.font = "20px sans-serif";
+    context.fillText("Canvas demonstration", 48, 82);
+  </script>
+</body>
+</html>
