@@ -1,36 +1,19 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="HTML element experiments for CSE 134B HW2.">
   <title>Nathan Nguyen - Developer | HTML experiments</title>
-  <link rel="stylesheet" href="styles/style.css">
-  <style>
-    header,
-    nav,
-    main,
-    section,
-    article,
-    footer,
-    form,
-    fieldset {
-      border-width: 1px;
-      border-style: solid;
-    }
-
-    experiment-example {
-      display: block;
-      border-width: 1px;
-      border-style: solid;
-      border-color: red;
-    }
-  </style>
+  <link rel="stylesheet" href="styles/global.css">
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/site.css">
+  <link rel="stylesheet" href="styles/experiments.css">
 </head>
 
 <body>
   <header>
-    <p><a href="index.html">Nathan Nguyen</a></p>
+    <p><a href="index.html"><svg width="36" height="36" viewBox="0 0 120 120" role="img" aria-labelledby="site-mark-title-experiments"><title id="site-mark-title-experiments">Cat portfolio mark</title><path d="M30 52 L35 25 L52 42 Q60 39 68 42 L85 25 L90 52 Q96 61 96 74 Q96 94 60 94 Q24 94 24 74 Q24 61 30 52 Z" fill="currentColor" opacity="0.16"></path><path d="M30 52 L35 25 L52 42 Q60 39 68 42 L85 25 L90 52 Q96 61 96 74 Q96 94 60 94 Q24 94 24 74 Q24 61 30 52 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"></path><circle cx="48" cy="68" r="4" fill="currentColor"></circle><circle cx="72" cy="68" r="4" fill="currentColor"></circle><path d="M57 77 Q60 80 63 77" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path><path d="M44 80 Q34 78 27 73 M44 85 Q34 86 27 91 M76 80 Q86 78 93 73 M76 85 Q86 86 93 91" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path></svg>NTN</a></p>
 
     <nav aria-label="Primary navigation">
       <ul>
@@ -38,7 +21,7 @@
         <li><a href="about.html">About</a></li>
         <li><a href="projects.html">Projects</a></li>
         <li><a href="linktoresumedownload.html">Resume</a></li>
-        <li><a href="experiments.html">HTML Experiments</a></li>
+        <li><a href="experiments.html" aria-current="page">HTML Experiments</a></li>
       </ul>
     </nav>
   </header>
@@ -46,14 +29,14 @@
   <main>
     <h1>HTML Experiments</h1>
 
-    <section>
+    <section id="inline-style-element">
       <h2>Inline Style Element</h2>
       <experiment-example>
         <p>A semantic CSS custom element for a red border.</p>
       </experiment-example>
     </section>
 
-    <section>
+    <section id="hello-world-element">
       <h2>Hello World Custom Element</h2>
       <p>
         Prints "Hello World!" within the browsers console without modifying the DOM.
@@ -61,7 +44,7 @@
       <hello-world></hello-world>
     </section>
 
-    <section>
+    <section id="template-element">
       <h2>Template Element</h2>
       <p>
         The template element stores HTML content that is not rendered when the
@@ -75,7 +58,7 @@
       </template>
     </section>
 
-    <section>
+    <section id="audio-element">
       <h2>Audio Element</h2>
       <p>
         This audio element demonstrates native browser audio playback.
@@ -86,7 +69,7 @@
       </audio>
     </section>
 
-    <section>
+    <section id="video-element">
       <h2>Video Element</h2>
       <p>
         This video element demonstrates native browser video playback.
@@ -97,7 +80,7 @@
       </video>
     </section>
 
-    <section>
+    <section id="canvas-element">
       <h2>Canvas Element</h2>
       <p>
         The canvas below contains a small JavaScript-generated drawing.
@@ -107,7 +90,7 @@
       </canvas>
     </section>
 
-    <section>
+    <section id="mathml-extra-credit">
       <h2>MathML Extra Credit</h2>
       <math display="block">
         <mi>E</mi>
@@ -131,45 +114,48 @@
     </noscript>
   </main>
 
-  <footer>
+  <section aria-labelledby="contact-heading">
+    <h2 id="contact-heading">Contact Me</h2>
     <form action="#" method="post">
       <fieldset>
-        <legend>Contact Me</legend>
+        <legend>Send a Message</legend>
 
         <p>
-          <label for="footer-contact-name">
+          <label for="contact-name">
             Name
-            <input id="footer-contact-name" name="name" type="text" autocomplete="name" required>
+            <input id="contact-name" name="name" type="text" autocomplete="name" required>
           </label>
         </p>
 
         <p>
-          <label for="footer-contact-email">
+          <label for="contact-email">
             Email
-            <input id="footer-contact-email" name="email" type="email" autocomplete="email" required>
+            <input id="contact-email" name="email" type="email" autocomplete="email" required>
           </label>
         </p>
 
         <p>
-          <label for="footer-contact-message">
+          <label for="contact-message">
             Message
-            <textarea id="footer-contact-message" name="message" rows="5" required></textarea>
+            <textarea id="contact-message" name="message" rows="5" required></textarea>
           </label>
         </p>
 
         <button type="submit">Send Message</button>
       </fieldset>
     </form>
+  </section>
+
+  <footer>
+    <a href="gear.html">Gear</a>
 
     <p>&copy; 2026 Nathan Nguyen</p>
 
-    <a href="gear.html">Gear</a>
-
     <nav aria-label="Contact links">
       <ul>
-        <li><a href="mailto:nathan@example.com">Email</a></li>
-        <li><a href="https://www.linkedin.com/in/your-profile">LinkedIn</a></li>
-        <li><a href="https://github.com/your-username">GitHub</a></li>
+        <li><a href="mailto:nathannwin@gmail.com">Email</a></li>
+        <li><a href="https://www.linkedin.com/in/nathan-newwin/">LinkedIn</a></li>
+        <li><a href="https://github.com/NathanNewwin">GitHub</a></li>
       </ul>
     </nav>
 

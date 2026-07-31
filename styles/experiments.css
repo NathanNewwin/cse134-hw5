@@ -1,0 +1,36 @@
+@layer page {
+experiment-example {
+  display: block;
+  padding: var(--space-md);
+  background: var(--color-danger-soft);
+  color: var(--color-text);
+  border: 1px solid var(--color-danger);
+  border-radius: var(--radius-md);
+}
+
+hello-world {
+  display: block;
+  min-block-size: 2.5rem;
+  padding: var(--space-sm);
+  background: var(--color-surface-muted);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+audio {
+  inline-size: 100%;
+}
+
+video,
+canvas {
+  max-inline-size: 40rem;
+}
+
+math {
+  overflow-x: auto;
+  padding: var(--space-sm);
+  background: var(--color-surface-muted);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+}

@@ -1,0 +1,36 @@
+@layer page {
+main {
+  display: grid;
+  min-block-size: 55vh;
+  place-items: center;
+}
+
+main > section {
+  inline-size: min(100%, 42rem);
+  text-align: center;
+}
+
+main > section p:first-of-type {
+  color: var(--color-primary);
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  font-weight: 700;
+}
+
+main > section a {
+  display: inline-block;
+  margin-block-start: var(--space-md);
+  padding: 0.7em 1em;
+  background: var(--color-primary);
+  color: var(--color-surface);
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: var(--shadow-soft);
+}
+
+main > section a:hover,
+main > section a:focus-visible {
+  background: var(--color-primary-strong);
+}
+}

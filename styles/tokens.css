@@ -1,0 +1,65 @@
+@layer tokens {
+  :root {
+    --color-background: #f4f3f0;
+    --color-surface: #fbfaf7;
+    --color-surface-soft: #efeeeb;
+    --color-surface-muted: #e9e8e5;
+    --color-surface-strong: #e3e2df;
+    --color-text: #1a1c1a;
+    --color-text-muted: #45474b;
+    --color-primary: #595c63;
+    --color-primary-strong: #2f312f;
+    --color-secondary: #625e56;
+    --color-secondary-soft: #e6dfd5;
+    --color-accent: #71747c;
+    --color-border: #c6c6cb;
+    --color-danger: #ba1a1a;
+    --color-danger-soft: #ffdad6;
+    --shadow-soft: 0 1rem 2.25rem -1.75rem rgb(47 49 47 / 42%);
+    --shadow-raised: 0 1.25rem 3rem -2.25rem rgb(89 92 99 / 45%);
+    --font-body: system-ui, -apple-system, blinkmacsystemfont, "Segoe UI", sans-serif;
+    --font-display: "Trebuchet MS", "Gill Sans", var(--font-body);
+    --step-neg-1: clamp(0.875rem, 0.84rem + 0.16vw, 0.9375rem);
+    --step-0: clamp(1rem, 0.96rem + 0.18vw, 1.0625rem);
+    --step-1: clamp(1.25rem, 1.13rem + 0.55vw, 1.5rem);
+    --step-2: clamp(1.5625rem, 1.34rem + 1.02vw, 2rem);
+    --step-3: clamp(2rem, 1.66rem + 1.55vw, 2.75rem);
+    --space-2xs: 0.25rem;
+    --space-xs: 0.5rem;
+    --space-sm: 0.75rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2.5rem;
+    --space-2xl: 4rem;
+    --radius-sm: 0.5rem;
+    --radius-md: 1rem;
+    --radius-lg: 1.5rem;
+    --radius-section: 2rem;
+    --radius-control: 1rem;
+    --radius-pill: 999rem;
+    --measure: 58rem;
+    --primary-nav-width: 14rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-background: #181a1f;
+      --color-surface: #20232a;
+      --color-surface-soft: #252931;
+      --color-surface-muted: #2e333c;
+      --color-surface-strong: #3b414c;
+      --color-text: #f3f1eb;
+      --color-text-muted: #cbc8bf;
+      --color-primary: #d8d9df;
+      --color-primary-strong: #fff;
+      --color-secondary: #d6cfc2;
+      --color-secondary-soft: #34312b;
+      --color-accent: #b9becb;
+      --color-border: #555b66;
+      --color-danger: #ffb4ab;
+      --color-danger-soft: #5d1714;
+      --shadow-soft: 0 1rem 2rem -1.25rem rgb(0 0 0 / 80%);
+      --shadow-raised: 0 1.5rem 3rem -2rem rgb(0 0 0 / 90%);
+    }
+  }
+}
