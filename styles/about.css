@@ -1,7 +1,14 @@
 @layer page {
+main > picture:first-of-type {
+  inline-size: min(100%, 24rem);
+  margin-inline: auto;
+}
+
 main > picture:first-of-type img {
-  aspect-ratio: 16 / 9;
+  inline-size: 100%;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
+  object-position: center;
 }
 
 main > section:nth-of-type(2) {

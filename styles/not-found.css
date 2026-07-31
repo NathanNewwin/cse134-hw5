@@ -10,6 +10,10 @@ main > section {
   text-align: center;
 }
 
+main > section > * {
+  margin-inline: auto;
+}
+
 main > section p:first-of-type {
   color: var(--color-primary);
   font-family: var(--font-display);

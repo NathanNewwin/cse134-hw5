@@ -1,22 +1,22 @@
 @layer tokens {
   :root {
-    --color-background: #f4f3f0;
-    --color-surface: #fbfaf7;
-    --color-surface-soft: #efeeeb;
-    --color-surface-muted: #e9e8e5;
-    --color-surface-strong: #e3e2df;
+    --color-background: #f0ebe2;
+    --color-surface: #fbf7ef;
+    --color-surface-soft: #eee5da;
+    --color-surface-muted: #e5ddd1;
+    --color-surface-strong: #d8d0c3;
     --color-text: #1a1c1a;
-    --color-text-muted: #45474b;
-    --color-primary: #595c63;
-    --color-primary-strong: #2f312f;
-    --color-secondary: #625e56;
-    --color-secondary-soft: #e6dfd5;
-    --color-accent: #71747c;
-    --color-border: #c6c6cb;
+    --color-text-muted: #4b4a45;
+    --color-primary: #4d6478;
+    --color-primary-strong: #24394c;
+    --color-secondary: #755f46;
+    --color-secondary-soft: #ead9c4;
+    --color-accent: #6a7f91;
+    --color-border: #c9bcae;
     --color-danger: #ba1a1a;
     --color-danger-soft: #ffdad6;
-    --shadow-soft: 0 1rem 2.25rem -1.75rem rgb(47 49 47 / 42%);
-    --shadow-raised: 0 1.25rem 3rem -2.25rem rgb(89 92 99 / 45%);
+    --shadow-soft: 0 1rem 2.25rem -1.75rem rgb(70 57 43 / 34%);
+    --shadow-raised: 0 1.25rem 3rem -2.25rem rgb(77 100 120 / 38%);
     --font-body: system-ui, -apple-system, blinkmacsystemfont, "Segoe UI", sans-serif;
     --font-display: "Trebuchet MS", "Gill Sans", var(--font-body);
     --step-neg-1: clamp(0.875rem, 0.84rem + 0.16vw, 0.9375rem);
@@ -61,5 +61,49 @@
       --shadow-soft: 0 1rem 2rem -1.25rem rgb(0 0 0 / 80%);
       --shadow-raised: 0 1.5rem 3rem -2rem rgb(0 0 0 / 90%);
     }
+  }
+
+  :root[data-theme="light"] {
+    color-scheme: light;
+
+    --color-background: #f0ebe2;
+    --color-surface: #fbf7ef;
+    --color-surface-soft: #eee5da;
+    --color-surface-muted: #e5ddd1;
+    --color-surface-strong: #d8d0c3;
+    --color-text: #1a1c1a;
+    --color-text-muted: #4b4a45;
+    --color-primary: #4d6478;
+    --color-primary-strong: #24394c;
+    --color-secondary: #755f46;
+    --color-secondary-soft: #ead9c4;
+    --color-accent: #6a7f91;
+    --color-border: #c9bcae;
+    --color-danger: #ba1a1a;
+    --color-danger-soft: #ffdad6;
+    --shadow-soft: 0 1rem 2.25rem -1.75rem rgb(70 57 43 / 34%);
+    --shadow-raised: 0 1.25rem 3rem -2.25rem rgb(77 100 120 / 38%);
+  }
+
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+
+    --color-background: #181a1f;
+    --color-surface: #20232a;
+    --color-surface-soft: #252931;
+    --color-surface-muted: #2e333c;
+    --color-surface-strong: #3b414c;
+    --color-text: #f3f1eb;
+    --color-text-muted: #cbc8bf;
+    --color-primary: #d8d9df;
+    --color-primary-strong: #fff;
+    --color-secondary: #d6cfc2;
+    --color-secondary-soft: #34312b;
+    --color-accent: #b9becb;
+    --color-border: #555b66;
+    --color-danger: #ffb4ab;
+    --color-danger-soft: #5d1714;
+    --shadow-soft: 0 1rem 2rem -1.25rem rgb(0 0 0 / 80%);
+    --shadow-raised: 0 1.5rem 3rem -2rem rgb(0 0 0 / 90%);
   }
 }
