@@ -5,13 +5,11 @@ import { projects } from "../../data/projects.js";
 
 export const prerender = true;
 
-export async function getStaticPaths() {
-  const projectPages = projects.map((project) => ({
+export function getStaticPaths() {
+  return projects.map((project) => ({
     params: { slug: project.slug },
     props: { project },
   }));
-
-  return projectPages;
 }
 
 const { project } = Astro.props;
