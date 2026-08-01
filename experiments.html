@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="styles/site.css">
   <link rel="stylesheet" href="styles/experiments.css">
   <script src="js/theme.js" defer></script>
+  <script src="js/experiments.js" defer></script>
 </head>
 
 <body>
@@ -162,22 +163,5 @@
     </nav>
 
   </footer>
-
-  <script>
-    class HelloWorld extends HTMLElement {
-      connectedCallback() {
-        console.log("Hello World!");
-      }
-    }
-
-    customElements.define("hello-world", HelloWorld);
-
-    const canvas = document.querySelector("#demo-canvas");
-    const context = canvas.getContext("2d");
-
-    context.strokeRect(20, 20, 260, 110);
-    context.font = "20px sans-serif";
-    context.fillText("Canvas demonstration", 48, 82);
-  </script>
 </body>
 </html>

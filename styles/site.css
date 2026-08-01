@@ -280,7 +280,6 @@ iframe {
   border-radius: var(--radius-lg);
 }
 
-img,
 video {
   background: var(--color-surface-strong);
 }

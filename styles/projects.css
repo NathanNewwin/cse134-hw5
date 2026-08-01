@@ -14,26 +14,24 @@ project-card img,
 main > article picture img {
   aspect-ratio: 16 / 9;
   inline-size: 100%;
-  object-fit: cover;
+  object-fit: contain;
+}
+
+.project-completion {
+  display: grid;
+  grid-template-columns: auto minmax(8rem, 1fr) auto;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+.project-completion strong {
+  color: var(--color-primary-strong);
+  font-size: var(--step-neg-1);
 }
 
 main > article > p:last-child,
 project-card article > p:last-child {
   margin-block-start: auto;
-}
-
-dialog {
-  max-inline-size: min(32rem, calc(100% - 2rem));
-  padding: var(--space-lg);
-  background: var(--color-surface);
-  color: var(--color-text);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-section);
-  box-shadow: var(--shadow-raised);
-}
-
-dialog::backdrop {
-  background: rgb(0 0 0 / 45%);
 }
 
 @media (width >= 48rem) {
