@@ -16,6 +16,9 @@ const scriptPaths = ["/js/theme.js", ...scripts];
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content={description}>
+<link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicons/favicon-96.png">
 <title>{pageTitle}</title>
 {stylesheetPaths.map((href) => <link rel="stylesheet" href={href}>)}
 {scriptPaths.map((src) => <script src={src} defer></script>)}
