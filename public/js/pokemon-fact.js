@@ -71,12 +71,26 @@ function createFallbackTemplate() {
 }
 
 class PokemonFactCard extends HTMLElement {
+  constructor() {
+    super();
+    this.abortController = null;
+    this.requestTimeoutId = null;
+    this.template = null;
+    this.fallbackText = "";
+    this.heading = null;
+    this.status = null;
+    this.button = null;
+    this.handleLoadClick = () => {
+      this.loadFacts();
+    };
+  }
+
   static get observedAttributes() {
     return ["heading"];
   }
 
   connectedCallback() {
-    this.abortController = null;
+    this.abortCurrentRequest();
     this.template = document.getElementById("pokemon-fact-template") ?? createFallbackTemplate();
     this.fallbackText = this.textContent.trim();
     this.render();
@@ -90,9 +104,10 @@ class PokemonFactCard extends HTMLElement {
   }
 
   disconnectedCallback() {
-    if (this.abortController) {
-      this.abortController.abort();
-      this.abortController = null;
+    this.abortCurrentRequest();
+
+    if (this.button) {
+      this.button.removeEventListener("click", this.handleLoadClick);
     }
   }
 
@@ -118,9 +133,7 @@ class PokemonFactCard extends HTMLElement {
     }
 
     this.heading.textContent = this.headingText;
-    this.button.addEventListener("click", () => {
-      this.loadFacts();
-    });
+    this.button.addEventListener("click", this.handleLoadClick);
   }
 
   setState(state) {
@@ -162,6 +175,11 @@ class PokemonFactCard extends HTMLElement {
       this.abortController.abort();
       this.abortController = null;
     }
+
+    if (this.requestTimeoutId) {
+      window.clearTimeout(this.requestTimeoutId);
+      this.requestTimeoutId = null;
+    }
   }
 
   async loadFacts() {
@@ -171,7 +189,7 @@ class PokemonFactCard extends HTMLElement {
     const controller = new AbortController();
     this.abortController = controller;
 
-    const timeoutId = window.setTimeout(() => {
+    this.requestTimeoutId = window.setTimeout(() => {
       controller.abort();
     }, pokemonFactsTimeout);
 
@@ -211,7 +229,10 @@ class PokemonFactCard extends HTMLElement {
         this.setError("Pokemon facts are unavailable right now. Try again later.");
       }
     } finally {
-      window.clearTimeout(timeoutId);
+      if (this.requestTimeoutId) {
+        window.clearTimeout(this.requestTimeoutId);
+        this.requestTimeoutId = null;
+      }
 
       if (this.abortController === controller) {
         this.abortController = null;
