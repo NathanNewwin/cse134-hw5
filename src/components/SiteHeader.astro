@@ -1,0 +1,28 @@
+---
+import CatMark from "./CatMark.astro";
+import { site } from "../data/site.js";
+
+const { currentPath = "/" } = Astro.props;
+
+function isCurrent(href) {
+  if (href === "/") {
+    return currentPath === "/";
+  }
+
+  return currentPath.startsWith(href);
+}
+---
+
+<header>
+  <p><a href="/"><CatMark titleId={`site-mark-title-${currentPath.replaceAll("/", "-") || "home"}`} />{site.brand}</a></p>
+
+  <nav aria-label="Primary navigation">
+    <ul>
+      {site.nav.map((item) => (
+        <li>
+          <a href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>{item.label}</a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>

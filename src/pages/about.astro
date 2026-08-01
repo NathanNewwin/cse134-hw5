@@ -1,0 +1,159 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="About"
+  description="Background information about Nathan Nguyen's computer science interests, goals, and hobbies."
+  stylesheets={["/styles/about.css"]}
+  scripts={["/js/pokemon-fact.js"]}
+>
+  <h1>About Me</h1>
+  <picture>
+    <source srcset="/assets/images/grad.jpg" type="image/jpeg">
+    <img src="/assets/images/placeholder.svg" alt="Portrait photo of Nathan Nguyen at graduation standing next to his girlfriend.">
+  </picture>
+
+  <section id="background">
+    <h2>Background</h2>
+    <p>
+      I am a recent UC San Diego computer science graduate with an interest
+      in building software that is practical, maintainable, and clearly
+      documented. Through coursework and project-based development, I have
+      worked on problems that require careful planning, debugging, and
+      communication of technical decisions.
+    </p>
+    <p>
+      My academic background has helped me develop a strong foundation in
+      programming fundamentals, data organization, web technologies, and
+      software design. I value readable code, reliable systems, and the
+      ability to explain technical work in a way that supports collaboration
+      and long-term maintenance.
+    </p>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    <article>
+      <h3>University of California San Diego</h3>
+      <p><strong>Bachelor of Science in Computer Science</strong></p>
+      <p>
+        Completed upper-division computer science coursework with a focus on
+        machine learning/AI, computer security, web development, and data organization.
+      </p>
+    </article>
+
+    <article>
+      <h3>Diablo Valley College</h3>
+      <p><strong>Associate of Science in Computer Science</strong></p>
+      <p>
+        Completed transfer coursework before UC San Diego, building a
+        foundation in programming, mathematics, and core computer science
+        concepts.
+      </p>
+    </article>
+  </section>
+
+  <section id="relevant-courses">
+    <h2>Relevant Courses</h2>
+    <article>
+      <h3>CSE 134 - Web Client Languages</h3>
+      <p>
+        This class focused on building web pages with clear structure,
+        accessible markup, and browser based technologies.
+      </p>
+    </article>
+
+    <article>
+      <h3>CSE 135 - Online Database Analytics Applications</h3>
+      <p>
+        This class covered the fundamentals of backend development.
+      </p>
+    </article>
+
+    <article>
+      <h3>More Classes</h3>
+      <p>
+        I'll add the descriptions later.
+      </p>
+    </article>
+  </section>
+
+  <section id="technical-interests">
+    <h2>Technical Interests</h2>
+    <p>
+      I am interested in building useful programs that solve practical
+      problems and make information easier to work with. That interest
+      naturally extends into <em>web development</em> and <i>plugins</i>, where I enjoy creating
+      applications that are clear, reliable, and easy to maintain.
+    </p>
+    <p>
+      I am also developing a deeper focus on <em>machine learning</em>, homelabs,
+      server networking, and <em>cybersecurity</em>. Machine learning lets me combine
+      mathematical reasoning, data analysis, and software
+      implementation in systems that can identify patterns at scale. With
+      homelabs and server networking, I enjoy working closer to the
+      infrastructure layer by configuring machines, understanding how services
+      communicate, and learning how networks stay reliable. Cybersecurity
+      ties these areas together by requiring technical decisions to account
+      for trust, risk, and the protection of users from the beginning.
+    </p>
+  </section>
+
+  <section id="location-context">
+    <h2>Location Context</h2>
+    <div>
+      <p>
+        I currently reside in San Diego, California.<br>
+        The map below provides
+        geographic context for the region where I studied at UC San Diego and
+        continue to develop software projects.
+      </p>
+    </div>
+    <iframe title="Map of the San Diego region" src="https://www.openstreetmap.org/export/embed.html?bbox=-117.282%2C32.715%2C-117.115%2C32.842&amp;layer=mapnik" width="560" height="315"></iframe>
+  </section>
+
+  <section id="hobbies">
+    <h2>Hobbies and Interests</h2>
+    <picture>
+      <source srcset="/assets/images/mooseyFront.jpg" type="image/jpeg">
+      <img src="/assets/images/placeholder.svg" alt="An adorable dilute tortoiseshell cat loafing comfortably on a bed." width="800" height="450">
+    </picture>
+    <ul>
+      <li>Airsoft</li>
+      <li>Cats</li>
+      <li>Comics</li>
+      <li>Cooking</li>
+      <li>DC</li>
+      <li>Hiking</li>
+      <li>Marvel</li>
+      <li>PC building</li>
+      <li>Pokemon</li>
+      <li>Star Wars</li>
+      <li>Video games</li>
+    </ul>
+    <pokemon-fact-card>
+      <p>
+        Pokemon facts need JavaScript and network access. When unavailable,
+        this area remains a simple hobbies section.
+      </p>
+    </pokemon-fact-card>
+    <template id="pokemon-fact-template">
+      <article>
+        <h3 data-role="heading">Pokemon Fact</h3>
+        <p data-role="status" role="status" aria-live="polite">
+          Press the button to load a random Pokemon fact.
+        </p>
+        <button type="button" data-role="load-button">Get Pokemon Fact</button>
+      </article>
+    </template>
+  </section>
+
+  <noscript>
+    <p>
+      JavaScript is disabled. The portfolio content and navigation remain
+      available, but the theme picker cannot override your system color
+      scheme without JavaScript.
+    </p>
+  </noscript>
+</BaseLayout>

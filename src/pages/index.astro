@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectSummary from "../components/ProjectSummary.astro";
+import { featuredProjects } from "../data/projects.js";
+---
+
+<BaseLayout
+  title="Homepage"
+  description="Portfolio home page for Nathan Nguyen, a recent UCSD computer science graduate."
+  stylesheets={["/styles/home.css"]}
+>
+  <h1>Nathan Nguyen</h1>
+
+  <picture>
+    <source srcset="/assets/images/funnyMe.jpg" type="image/jpeg">
+    <img src="/assets/images/placeholder.svg" alt="Portrait photo of Nathan Nguyen staring down the camera in a funny manner.">
+  </picture>
+
+  <section id="introduction">
+    <h2>Introduction</h2>
+    <p>
+      I am a <span>recent UC San Diego computer science graduate</span>
+      interested in building <strong>practical, reliable software</strong>.
+      My work focuses on clear
+      implementation, readable documentation, and systems that are useful to
+      the people who depend on them.
+    </p>
+    <p>
+      I am especially interested in backend development, data-focused tools,
+      web applications, and developer workflows that make complex information
+      easier to understand and maintain.
+    </p>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <ul>
+      <li>Python programming and scripting</li>
+      <li>SQL and relational database fundamentals</li>
+      <li>HTML and semantic web structure</li>
+      <li>JavaScript and CSS fundamentals</li>
+      <li>Data analysis and organization</li>
+      <li>Git, GitHub, and technical documentation</li>
+    </ul>
+  </section>
+
+  <section id="featured-projects">
+    <h2>Featured Projects</h2>
+    {featuredProjects.map((project) => (
+      <ProjectSummary project={project} headingLevel={3} />
+    ))}
+  </section>
+
+  <noscript>
+    <p>
+      JavaScript is disabled. The portfolio content and navigation remain
+      available, but the theme picker cannot override your system color
+      scheme without JavaScript.
+    </p>
+  </noscript>
+</BaseLayout>

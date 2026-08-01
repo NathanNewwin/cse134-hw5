@@ -1,0 +1,97 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="HTML experiments"
+  description="HTML element experiments for CSE 134B HW2."
+  stylesheets={["/styles/experiments.css"]}
+  scripts={["/js/experiments.js"]}
+>
+  <h1>HTML Experiments</h1>
+
+  <section id="inline-style-element">
+    <h2>Inline Style Element</h2>
+    <experiment-example>
+      <p>A semantic CSS custom element for a red border.</p>
+    </experiment-example>
+  </section>
+
+  <section id="hello-world-element">
+    <h2>Hello World Custom Element</h2>
+    <p>
+      Prints "Hello World!" within the browsers console without modifying the DOM.
+    </p>
+    <hello-world></hello-world>
+  </section>
+
+  <section id="template-element">
+    <h2>Template Element</h2>
+    <p>
+      The template element stores HTML content that is not rendered when the
+      page initially loads.
+    </p>
+    <template id="project-template">
+      <article>
+        <h3>Template Project</h3>
+        <p>This content remains inside the template and remains unrendered.</p>
+      </article>
+    </template>
+  </section>
+
+  <section id="audio-element">
+    <h2>Audio Element</h2>
+    <p>
+      This audio element demonstrates native browser audio playback.
+    </p>
+    <audio controls>
+      <source src="/assets/audio/introduction.wav" type="audio/wav">
+      Your browser does not support the audio element.
+    </audio>
+  </section>
+
+  <section id="video-element">
+    <h2>Video Element</h2>
+    <p>
+      This video element demonstrates native browser video playback.
+    </p>
+    <video controls width="640">
+      <source src="/assets/video/project-demo.mp4" type="video/mp4">
+      Your browser does not support the video element.
+    </video>
+  </section>
+
+  <section id="canvas-element">
+    <h2>Canvas Element</h2>
+    <p>
+      The canvas below contains a small JavaScript-generated drawing.
+    </p>
+    <canvas id="demo-canvas" width="300" height="150">
+      Your browser does not support the canvas element.
+    </canvas>
+  </section>
+
+  <section id="mathml-extra-credit">
+    <h2>MathML Extra Credit</h2>
+    <math display="block">
+      <mi>E</mi>
+      <mo>=</mo>
+      <mi>m</mi>
+      <msup>
+        <mi>c</mi>
+        <mn>2</mn>
+      </msup>
+    </math>
+    <p>
+      MathML consists of special tags that allow mathematical formulas and notations to be written on web pages.
+    </p>
+  </section>
+
+  <noscript>
+    <p>
+      JavaScript is disabled. The portfolio content remains available, but
+      the console and canvas demonstrations will not run. The theme picker
+      also cannot override your system color scheme without JavaScript.
+    </p>
+  </noscript>
+</BaseLayout>

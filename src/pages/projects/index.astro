@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectSummary from "../../components/ProjectSummary.astro";
+import { projects } from "../../data/projects.js";
+---
+
+<BaseLayout
+  title="Projects"
+  description="Software project summaries from Nathan Nguyen's portfolio."
+  stylesheets={["/styles/projects.css"]}
+>
+  <h1>Projects</h1>
+  <p>
+    This page highlights selected coursework and personal projects from my
+    GitHub profile.
+  </p>
+
+  {projects.map((project) => (
+    <ProjectSummary project={project} wrapped={project.id === "competition-project"} />
+  ))}
+</BaseLayout>

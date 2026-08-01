@@ -1,0 +1,21 @@
+---
+import { site } from "../data/site.js";
+
+const {
+  title,
+  description,
+  stylesheets = [],
+  scripts = [],
+} = Astro.props;
+
+const pageTitle = title ? `${site.title} | ${title}` : site.title;
+const stylesheetPaths = ["/styles/global.css", "/styles/tokens.css", "/styles/site.css", ...stylesheets];
+const scriptPaths = ["/js/theme.js", ...scripts];
+---
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content={description}>
+<title>{pageTitle}</title>
+{stylesheetPaths.map((href) => <link rel="stylesheet" href={href}>)}
+{scriptPaths.map((src) => <script src={src} defer></script>)}

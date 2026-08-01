@@ -1,0 +1,44 @@
+---
+const { project, headingLevel = 2, wrapped = false, showTitle = true } = Astro.props;
+const Heading = `h${headingLevel}`;
+---
+
+{wrapped ? (
+  <project-card id={project.id}>
+    <article>
+      {showTitle && (
+        <header>
+          <Heading>{project.title}</Heading>
+        </header>
+      )}
+      <picture>
+        <source srcset={project.image} type={project.imageType}>
+        <img src="/assets/images/placeholder.svg" alt={project.imageAlt} width="800" height="450">
+      </picture>
+      <p>{project.summary}</p>
+      {project.technologies && <p>{project.technologies}</p>}
+      {project.completion !== undefined && (
+        <p class="project-completion"><span>{project.status}</span><progress value={project.completion} max="100">{project.completion}%</progress><strong>{project.completion}%</strong></p>
+      )}
+      <p><a href={project.repository} target="_blank" rel="noopener noreferrer">{project.repositoryLabel}</a></p>
+    </article>
+  </project-card>
+) : (
+  <article id={project.id}>
+    {showTitle && (
+      <header>
+        <Heading>{project.title}</Heading>
+      </header>
+    )}
+    <picture>
+      <source srcset={project.image} type={project.imageType}>
+      <img src="/assets/images/placeholder.svg" alt={project.imageAlt} width="800" height="450">
+    </picture>
+    <p>{project.summary}</p>
+    {project.technologies && <p>{project.technologies}</p>}
+    {project.completion !== undefined && (
+      <p class="project-completion"><span>{project.status}</span><progress value={project.completion} max="100">{project.completion}%</progress><strong>{project.completion}%</strong></p>
+    )}
+    <p><a href={project.repository} target="_blank" rel="noopener noreferrer">{project.repositoryLabel}</a></p>
+  </article>
+)}

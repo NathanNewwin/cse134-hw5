@@ -1,0 +1,25 @@
+---
+import { site } from "../data/site.js";
+---
+
+<footer>
+  <a href="/gear/">Gear</a>
+
+  <p>&copy; {site.year} {site.author}</p>
+
+  <nav aria-label="Contact links">
+    <ul>
+      {site.socialLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            target={link.external ? "_blank" : undefined}
+            rel={link.external ? "noopener noreferrer" : undefined}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</footer>

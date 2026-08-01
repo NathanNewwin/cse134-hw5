@@ -1,0 +1,38 @@
+---
+const suffix = Astro.props.idSuffix ? `-${Astro.props.idSuffix}` : "";
+const nameId = `contact-name${suffix}`;
+const emailId = `contact-email${suffix}`;
+const messageId = `contact-message${suffix}`;
+---
+
+<section aria-labelledby="contact-heading">
+  <h2 id="contact-heading">Contact Me</h2>
+  <form action="#" method="post">
+    <fieldset>
+      <legend>Send a Message</legend>
+
+      <p>
+        <label for={nameId}>
+          Name
+          <input id={nameId} name="name" type="text" autocomplete="name" required>
+        </label>
+      </p>
+
+      <p>
+        <label for={emailId}>
+          Email
+          <input id={emailId} name="email" type="email" autocomplete="email" required>
+        </label>
+      </p>
+
+      <p>
+        <label for={messageId}>
+          Message
+          <textarea id={messageId} name="message" rows="5" required></textarea>
+        </label>
+      </p>
+
+      <button type="submit">Send Message</button>
+    </fieldset>
+  </form>
+</section>

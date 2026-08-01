@@ -51,6 +51,22 @@ a {
   color: var(--color-primary-strong);
 }
 
+.skip-link {
+  position: absolute;
+  inset-block-start: var(--space-sm);
+  inset-inline-start: var(--space-sm);
+  z-index: 10;
+  padding: 0.6em 0.8em;
+  background: var(--color-primary);
+  color: var(--color-surface);
+  border-radius: var(--radius-control);
+  transform: translateY(calc(-100% - var(--space-lg)));
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
 strong,
 b {
   color: var(--color-primary-strong);

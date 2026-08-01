@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectSummary from "../../components/ProjectSummary.astro";
+import { projects } from "../../data/projects.js";
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<BaseLayout
+  title={project.title}
+  description={`${project.title} project details from Nathan Nguyen's portfolio.`}
+  stylesheets={["/styles/projects.css"]}
+>
+  <h1>{project.title}</h1>
+
+  <ProjectSummary project={project} showTitle={false} />
+
+  <section aria-labelledby="project-details-heading">
+    <h2 id="project-details-heading">Project Details</h2>
+    <ul>
+      {project.details.map((detail) => <li>{detail}</li>)}
+    </ul>
+    <p><a href="/projects/">Return to all projects</a></p>
+  </section>
+</BaseLayout>
