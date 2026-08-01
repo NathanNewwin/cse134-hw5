@@ -46,13 +46,16 @@ function getNextTheme(theme) {
   return themeOrder[(index + 1) % themeOrder.length];
 }
 
-function updateButton(button, labelSlot, theme) {
+function updateButton(button, labelSlot, stateSlot, theme) {
   const nextTheme = getNextTheme(theme);
+  const selectedLabel = themeLabels[theme];
+  const nextLabel = themeLabels[nextTheme];
 
   button.dataset.themeChoice = theme;
-  button.setAttribute("aria-label", `Theme: ${themeLabels[theme]}. Activate for ${themeLabels[nextTheme]}.`);
-  button.title = `Theme: ${themeLabels[theme]}`;
-  labelSlot.textContent = themeLabels[theme];
+  button.setAttribute("aria-label", `Theme picker. Selected theme: ${selectedLabel}. Press to select ${nextLabel}.`);
+  button.title = `Theme: ${selectedLabel}`;
+  labelSlot.textContent = `Theme: ${selectedLabel}`;
+  stateSlot.textContent = `Selected theme: ${selectedLabel}. Next theme: ${nextLabel}.`;
 }
 
 function createThemePicker(currentTheme) {
@@ -65,21 +68,28 @@ function createThemePicker(currentTheme) {
   const button = document.createElement("button");
   button.className = "theme-picker";
   button.type = "button";
+  button.setAttribute("aria-describedby", "theme-picker-state");
 
   const labelSlot = document.createElement("span");
   labelSlot.className = "theme-picker-label";
 
+  const stateSlot = document.createElement("span");
+  stateSlot.className = "visually-hidden";
+  stateSlot.id = "theme-picker-state";
+  stateSlot.setAttribute("aria-live", "polite");
+  stateSlot.setAttribute("aria-atomic", "true");
+
   let selectedTheme = currentTheme;
-  updateButton(button, labelSlot, selectedTheme);
+  updateButton(button, labelSlot, stateSlot, selectedTheme);
 
   button.addEventListener("click", () => {
     selectedTheme = getNextTheme(selectedTheme);
     applyTheme(selectedTheme);
     writeStoredTheme(selectedTheme);
-    updateButton(button, labelSlot, selectedTheme);
+    updateButton(button, labelSlot, stateSlot, selectedTheme);
   });
 
-  button.append(labelSlot);
+  button.append(labelSlot, stateSlot);
   nav.append(button);
 }
 

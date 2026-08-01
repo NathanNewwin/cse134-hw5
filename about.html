@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="styles/site.css">
   <link rel="stylesheet" href="styles/about.css">
   <script src="js/theme.js" defer></script>
+  <script src="js/pokemon-fact.js" defer></script>
 </head>
 
 <body>
@@ -30,7 +31,7 @@
   <main>
     <h1>About Me</h1>
     <picture>
-      <source srcset="assets/images/grad.jpg" type="image/svg+xml">
+      <source srcset="assets/images/grad.jpg" type="image/jpeg">
       <img src="assets/images/placeholder.svg" alt="Portrait photo of Nathan Nguyen at graduation standing next to his girlfriend.">
     </picture>
 
@@ -135,29 +136,45 @@
 
     <section id="hobbies">
       <h2>Hobbies and Interests</h2>
-      <ul>
-        <li>Cooking</li>
-        <li>Hiking</li>
-        <li>Airsoft</li>
-        <li>Cats</li>
-        <li>PC building</li>
-        <li>Video games</li>
-        <li>Comics</li>
-        <li>Star Wars</li>
-        <li>Marvel</li>
-        <li>DC</li>
-      </ul>
       <picture>
-        <source srcset="assets/images/mooseyFront.jpg" type="image/svg+xml">
+        <source srcset="assets/images/mooseyFront.jpg" type="image/jpeg">
         <img src="assets/images/placeholder.svg" alt="An adorable dilute tortoiseshell cat loafing comfortably on a bed." width="800" height="450">
       </picture>
+      <ul>
+        <li>Airsoft</li>
+        <li>Cats</li>
+        <li>Comics</li>
+        <li>Cooking</li>
+        <li>DC</li>
+        <li>Hiking</li>
+        <li>Marvel</li>
+        <li>PC building</li>
+        <li>Pokemon</li>
+        <li>Star Wars</li>
+        <li>Video games</li>
+      </ul>
+      <pokemon-fact-card>
+        <p>
+          Pokemon facts need JavaScript and network access. When unavailable,
+          this area remains a simple hobbies section.
+        </p>
+      </pokemon-fact-card>
+      <template id="pokemon-fact-template">
+        <article>
+          <h3 data-role="heading">Pokemon Fact</h3>
+          <p data-role="status" role="status" aria-live="polite">
+            Press the button to load a random Pokemon fact.
+          </p>
+          <button type="button" data-role="load-button">Get Pokemon Fact</button>
+        </article>
+      </template>
     </section>
 
     <noscript>
       <p>
         JavaScript is disabled. The portfolio content and navigation remain
-        available, but not everything will be fully interactive.
-        Please enable JavaScript for the full experience.
+        available, but the theme picker cannot override your system color
+        scheme without JavaScript.
       </p>
     </noscript>
   </main>
