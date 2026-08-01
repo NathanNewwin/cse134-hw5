@@ -1,6 +1,6 @@
 export function projectFromEntry(entry) {
   return {
-    slug: entry.id.replace(/\.md$/, ""),
+    slug: entry.id.replace(/\.(json|md)$/, ""),
     ...entry.data,
   };
 }
