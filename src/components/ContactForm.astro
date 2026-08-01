@@ -12,24 +12,18 @@ const messageId = `contact-message${suffix}`;
       <legend>Send a Message</legend>
 
       <p>
-        <label for={nameId}>
-          Name
-          <input id={nameId} name="name" type="text" autocomplete="name" required>
-        </label>
+        <label for={nameId}>Name</label>
+        <input id={nameId} name="name" type="text" autocomplete="name" required>
       </p>
 
       <p>
-        <label for={emailId}>
-          Email
-          <input id={emailId} name="email" type="email" autocomplete="email" required>
-        </label>
+        <label for={emailId}>Email</label>
+        <input id={emailId} name="email" type="email" autocomplete="email" required>
       </p>
 
       <p>
-        <label for={messageId}>
-          Message
-          <textarea id={messageId} name="message" rows="5" required></textarea>
-        </label>
+        <label for={messageId}>Message</label>
+        <textarea id={messageId} name="message" rows="5" required></textarea>
       </p>
 
       <button type="submit">Send Message</button>
