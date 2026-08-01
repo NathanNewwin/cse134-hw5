@@ -1,7 +1,11 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ProjectSummary from "../../components/ProjectSummary.astro";
-import { projects } from "../../data/projects.js";
+import { getCollection } from "astro:content";
+import { projectFromEntry, sortProjects } from "../../data/project-entry.js";
+
+const projectEntries = await getCollection("projects");
+const projects = sortProjects(projectEntries.map(projectFromEntry));
 ---
 
 <BaseLayout

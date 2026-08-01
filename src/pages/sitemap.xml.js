@@ -1,8 +1,11 @@
 import { site } from "../data/site.js";
-import { projects } from "../data/projects.js";
+import { getCollection } from "astro:content";
+import { projectFromEntry, sortProjects } from "../data/project-entry.js";
 
-export function GET({ site: astroSite }) {
+export async function GET({ site: astroSite }) {
   const origin = astroSite?.origin ?? "https://localhost";
+  const projectEntries = await getCollection("projects");
+  const projects = sortProjects(projectEntries.map(projectFromEntry));
   const urls = [
     ...site.nav.map((item) => item.href),
     ...projects.map((project) => `/projects/${project.slug}/`),
