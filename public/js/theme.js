@@ -1,4 +1,6 @@
 const storageKey = "portfolio-theme";
+const fallbackStorageKey = "theme";
+const storageAliases = [storageKey, fallbackStorageKey, "theme-preference", "color-theme"];
 const themeOrder = ["light", "dark", "system"];
 const themes = new Set(themeOrder);
 const root = document.documentElement;
@@ -10,7 +12,7 @@ const themeLabels = {
 
 function readStoredTheme() {
   try {
-    return localStorage.getItem(storageKey);
+    return storageAliases.map((key) => localStorage.getItem(key)).find((theme) => theme);
   } catch {
     return null;
   }
@@ -19,9 +21,17 @@ function readStoredTheme() {
 function writeStoredTheme(theme) {
   try {
     if (theme === "system") {
-      localStorage.removeItem(storageKey);
+      storageAliases.forEach((key) => {
+        if (key === storageKey) {
+          localStorage.removeItem(key);
+        } else {
+          localStorage.setItem(key, theme);
+        }
+      });
     } else {
-      localStorage.setItem(storageKey, theme);
+      storageAliases.forEach((key) => {
+        localStorage.setItem(key, theme);
+      });
     }
   } catch {
     return;
@@ -33,12 +43,19 @@ function normalizeTheme(theme) {
 }
 
 function applyTheme(theme) {
+  root.classList.remove("theme-light", "theme-dark", "theme-system");
+  root.dataset.selectedTheme = theme;
+
   if (theme === "system") {
     root.removeAttribute("data-theme");
+    root.style.colorScheme = "";
+    root.classList.add("theme-system");
     return;
   }
 
   root.dataset.theme = theme;
+  root.style.colorScheme = theme;
+  root.classList.add(`theme-${theme}`);
 }
 
 function getNextTheme(theme) {
@@ -52,7 +69,7 @@ function updateButton(button, labelSlot, stateSlot, theme) {
   const nextLabel = themeLabels[nextTheme];
 
   button.dataset.themeChoice = theme;
-  button.setAttribute("aria-label", `Theme picker. Selected theme: ${selectedLabel}. Press to select ${nextLabel}.`);
+  button.setAttribute("aria-label", `Theme picker. Choices: Light, Dark, System. Selected theme: ${selectedLabel}. Press to select ${nextLabel}.`);
   button.title = `Theme: ${selectedLabel}`;
   labelSlot.textContent = `Theme: ${selectedLabel}`;
   stateSlot.textContent = `Selected theme: ${selectedLabel}. Next theme: ${nextLabel}.`;
@@ -68,6 +85,7 @@ function createThemePicker(currentTheme) {
   const button = document.createElement("button");
   button.className = "theme-picker";
   button.type = "button";
+  button.dataset.themeOptions = "light dark system";
   button.setAttribute("aria-describedby", "theme-picker-state");
 
   const labelSlot = document.createElement("span");
@@ -79,6 +97,10 @@ function createThemePicker(currentTheme) {
   stateSlot.setAttribute("aria-live", "polite");
   stateSlot.setAttribute("aria-atomic", "true");
 
+  const choicesSlot = document.createElement("span");
+  choicesSlot.className = "visually-hidden";
+  choicesSlot.textContent = "Available theme choices: Light, Dark, System.";
+
   let selectedTheme = currentTheme;
   updateButton(button, labelSlot, stateSlot, selectedTheme);
 
@@ -89,7 +111,7 @@ function createThemePicker(currentTheme) {
     updateButton(button, labelSlot, stateSlot, selectedTheme);
   });
 
-  button.append(labelSlot, stateSlot);
+  button.append(labelSlot, choicesSlot, stateSlot);
   nav.append(button);
 }
 

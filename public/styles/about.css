@@ -112,12 +112,26 @@ pokemon-fact-card article {
 }
 
 pokemon-fact-card h3,
-pokemon-fact-card p {
+pokemon-fact-card dl,
+pokemon-fact-card dd {
   margin-block-end: 0;
 }
 
 pokemon-fact-card h3 {
   font-size: var(--step-0);
+}
+
+pokemon-fact-card dl {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+pokemon-fact-card dt {
+  font-weight: 700;
+}
+
+pokemon-fact-card dd {
+  margin-inline-start: 0;
 }
 
 pokemon-fact-card button {

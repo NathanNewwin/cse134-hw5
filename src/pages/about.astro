@@ -132,7 +132,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <li>Star Wars</li>
       <li>Video games</li>
     </ul>
-    <pokemon-fact-card>
+    <pokemon-fact-card heading="Pokemon Fact">
       <p>
         Pokemon facts need JavaScript and network access. When unavailable,
         this area remains a simple hobbies section.
@@ -141,9 +141,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <template id="pokemon-fact-template">
       <article>
         <h3 data-role="heading">Pokemon Fact</h3>
-        <p data-role="status" role="status" aria-live="polite">
-          Press the button to load a random Pokemon fact.
-        </p>
+        <dl data-role="record">
+          <dt>Fact</dt>
+          <dd data-role="status" role="status" aria-live="polite">
+            Press the button to load a random Pokemon fact.
+          </dd>
+        </dl>
         <button type="button" data-role="load-button">Get Pokemon Fact</button>
       </article>
     </template>

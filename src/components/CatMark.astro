@@ -1,9 +1,8 @@
 ---
-const { titleId = "site-mark-title" } = Astro.props;
+const { label = "Cat portfolio mark" } = Astro.props;
 ---
 
-<svg width="36" height="36" viewBox="0 0 120 120" role="img" aria-labelledby={titleId}>
-  <title id={titleId}>Cat portfolio mark</title>
+<svg width="36" height="36" viewBox="0 0 120 120" role="img" aria-label={label}>
   <path d="M30 52 L35 25 L52 42 Q60 39 68 42 L85 25 L90 52 Q96 61 96 74 Q96 94 60 94 Q24 94 24 74 Q24 61 30 52 Z" fill="currentColor" opacity="0.16"></path>
   <path d="M30 52 L35 25 L52 42 Q60 39 68 42 L85 25 L90 52 Q96 61 96 74 Q96 94 60 94 Q24 94 24 74 Q24 61 30 52 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"></path>
   <circle cx="48" cy="68" r="4" fill="currentColor"></circle>

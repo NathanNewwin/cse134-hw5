@@ -1,10 +1,15 @@
-const pokemonFactsEndpoint = "https://pokefacts.vercel.app/";
+const pokemonFactsEndpoint = "https://pokefacts.vercel.app/?count=1";
 const pokemonFactsCacheKey = "pokemon-fact:last";
 const pokemonFactsCacheTtl = 5 * 60 * 1000;
 const pokemonFactsTimeout = 7000;
-const pokemonFactsCount = 1;
 const defaultButtonLabel = "Get Pokemon Fact";
 const defaultHeading = "Pokemon Fact";
+const states = {
+  idle: "idle",
+  loading: "loading",
+  success: "success",
+  error: "error",
+};
 
 function getCachedFact() {
   try {
@@ -44,24 +49,31 @@ function createFallbackTemplate() {
   const template = document.createElement("template");
   const article = document.createElement("article");
   const heading = document.createElement("h3");
-  const status = document.createElement("p");
+  const record = document.createElement("dl");
+  const term = document.createElement("dt");
+  const status = document.createElement("dd");
   const button = document.createElement("button");
 
   heading.dataset.role = "heading";
+  record.dataset.role = "record";
+  term.textContent = "Fact";
   status.dataset.role = "status";
   status.setAttribute("role", "status");
   status.setAttribute("aria-live", "polite");
   button.type = "button";
   button.dataset.role = "load-button";
 
-  article.append(heading, status, button);
+  record.append(term, status);
+  article.append(heading, record, button);
   template.content.append(article);
 
   return template;
 }
 
 class PokemonFactCard extends HTMLElement {
-  static observedAttributes = ["heading"];
+  static get observedAttributes() {
+    return ["heading"];
+  }
 
   connectedCallback() {
     this.abortController = null;
@@ -78,7 +90,10 @@ class PokemonFactCard extends HTMLElement {
   }
 
   disconnectedCallback() {
-    this.abortCurrentRequest();
+    if (this.abortController) {
+      this.abortController.abort();
+      this.abortController = null;
+    }
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -98,7 +113,7 @@ class PokemonFactCard extends HTMLElement {
     this.button = this.querySelector('[data-role="load-button"]');
 
     if (!this.heading || !this.button || !this.status) {
-      this.setState("error");
+      this.setState(states.error);
       return;
     }
 
@@ -115,28 +130,28 @@ class PokemonFactCard extends HTMLElement {
   }
 
   setIdle() {
-    this.setState("idle");
+    this.setState(states.idle);
     this.status.textContent = "Press the button to load a random Pokemon fact.";
     this.button.textContent = this.buttonLabel;
     this.button.disabled = false;
   }
 
   setLoading() {
-    this.setState("loading");
+    this.setState(states.loading);
     this.status.textContent = "Loading a Pokemon fact...";
     this.button.textContent = "Loading...";
     this.button.disabled = true;
   }
 
   setError(message) {
-    this.setState("error");
+    this.setState(states.error);
     this.status.textContent = this.fallbackText ? `${message} ${this.fallbackText}` : message;
-    this.button.textContent = "Try Again";
+    this.button.textContent = "Retry Pokemon Fact";
     this.button.disabled = false;
   }
 
   setFact(fact) {
-    this.setState("ready");
+    this.setState(states.success);
     this.status.textContent = fact;
     this.button.textContent = "Get Another Fact";
     this.button.disabled = false;
@@ -161,11 +176,7 @@ class PokemonFactCard extends HTMLElement {
     }, pokemonFactsTimeout);
 
     try {
-      const url = new URL(pokemonFactsEndpoint);
-      url.searchParams.set("count", String(pokemonFactsCount));
-      url.searchParams.set("request", String(Date.now()));
-
-      const response = await fetch(url, {
+      const response = await fetch(pokemonFactsEndpoint, {
         headers: {
           accept: "application/json",
         },
@@ -180,9 +191,9 @@ class PokemonFactCard extends HTMLElement {
       const facts = Array.isArray(payload.data) ? payload.data.filter((fact) => typeof fact === "string") : [];
 
       if (facts.length === 0) {
-        this.setState("idle");
+        this.setState(states.idle);
         this.status.textContent = "No Pokemon facts were returned. Try again.";
-        this.button.textContent = "Try Again";
+        this.button.textContent = "Retry Pokemon Fact";
         this.button.disabled = false;
         return;
       }
