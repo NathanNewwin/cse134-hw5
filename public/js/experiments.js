@@ -1,10 +1,6 @@
-class HelloWorld extends HTMLElement {
-  connectedCallback() {
-    console.log("Hello World!");
-  }
-}
-
-customElements.define("hello-world", HelloWorld);
+document.querySelectorAll("hello-world").forEach(() => {
+  console.log("Hello World!");
+});
 
 const canvas = document.querySelector("#demo-canvas");
 
