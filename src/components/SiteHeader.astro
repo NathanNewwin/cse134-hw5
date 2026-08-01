@@ -24,5 +24,25 @@ function isCurrent(href) {
         </li>
       ))}
     </ul>
+    <fieldset class="theme-picker" data-theme-picker data-theme-options="light dark system" aria-describedby="theme-picker-state" hidden>
+      <legend>Theme</legend>
+      <span class="theme-picker-options">
+        <span>
+          <input type="radio" id="theme-picker-light" name="theme" value="light">
+          <label for="theme-picker-light">Light</label>
+        </span>
+        <span>
+          <input type="radio" id="theme-picker-dark" name="theme" value="dark">
+          <label for="theme-picker-dark">Dark</label>
+        </span>
+        <span>
+          <input type="radio" id="theme-picker-system" name="theme" value="system" checked>
+          <label for="theme-picker-system">System</label>
+        </span>
+      </span>
+      <span class="visually-hidden" id="theme-picker-state" aria-live="polite" aria-atomic="true">
+        Selected theme: System.
+      </span>
+    </fieldset>
   </nav>
 </header>

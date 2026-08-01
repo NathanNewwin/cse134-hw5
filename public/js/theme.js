@@ -44,75 +44,90 @@ function normalizeTheme(theme) {
 
 function applyTheme(theme) {
   root.classList.remove("theme-light", "theme-dark", "theme-system");
-  root.dataset.selectedTheme = theme;
+  root.setAttribute("data-selected-theme", theme);
+  root.setAttribute("data-theme", theme);
 
   if (theme === "system") {
-    root.removeAttribute("data-theme");
-    root.style.colorScheme = "";
     root.classList.add("theme-system");
     return;
   }
 
-  root.dataset.theme = theme;
-  root.style.colorScheme = theme;
   root.classList.add(`theme-${theme}`);
 }
 
-function getNextTheme(theme) {
-  const index = themeOrder.indexOf(theme);
-  return themeOrder[(index + 1) % themeOrder.length];
-}
-
-function updateButton(button, labelSlot, stateSlot, theme) {
-  const nextTheme = getNextTheme(theme);
+function updateThemePicker(fieldset, stateSlot, theme) {
   const selectedLabel = themeLabels[theme];
-  const nextLabel = themeLabels[nextTheme];
 
-  button.dataset.themeChoice = theme;
-  button.setAttribute("aria-label", `Theme picker. Choices: Light, Dark, System. Selected theme: ${selectedLabel}. Press to select ${nextLabel}.`);
-  button.title = `Theme: ${selectedLabel}`;
-  labelSlot.textContent = `Theme: ${selectedLabel}`;
-  stateSlot.textContent = `Selected theme: ${selectedLabel}. Next theme: ${nextLabel}.`;
+  fieldset.dataset.themeChoice = theme;
+  stateSlot.textContent = `Selected theme: ${selectedLabel}.`;
 }
 
 function createThemePicker(currentTheme) {
+  const picker = document.querySelector("[data-theme-picker]");
   const nav = document.querySelector("body > header nav");
 
-  if (!nav) {
+  if (!picker && !nav) {
     return;
   }
 
-  const button = document.createElement("button");
-  button.className = "theme-picker";
-  button.type = "button";
-  button.dataset.themeOptions = "light dark system";
-  button.setAttribute("aria-describedby", "theme-picker-state");
+  const fieldset = picker ?? document.createElement("fieldset");
+  let stateSlot = fieldset.querySelector("#theme-picker-state");
 
-  const labelSlot = document.createElement("span");
-  labelSlot.className = "theme-picker-label";
+  if (!picker) {
+    fieldset.className = "theme-picker";
+    fieldset.dataset.themePicker = "";
+    fieldset.dataset.themeOptions = "light dark system";
+    fieldset.setAttribute("aria-describedby", "theme-picker-state");
+    fieldset.replaceChildren();
 
-  const stateSlot = document.createElement("span");
-  stateSlot.className = "visually-hidden";
-  stateSlot.id = "theme-picker-state";
-  stateSlot.setAttribute("aria-live", "polite");
-  stateSlot.setAttribute("aria-atomic", "true");
+    const legend = document.createElement("legend");
+    legend.textContent = "Theme";
 
-  const choicesSlot = document.createElement("span");
-  choicesSlot.className = "visually-hidden";
-  choicesSlot.textContent = "Available theme choices: Light, Dark, System.";
+    const options = document.createElement("span");
+    options.className = "theme-picker-options";
 
-  let selectedTheme = currentTheme;
-  updateButton(button, labelSlot, stateSlot, selectedTheme);
+    themeOrder.forEach((theme) => {
+      const option = document.createElement("span");
+      const input = document.createElement("input");
+      const label = document.createElement("label");
+      const id = `theme-picker-${theme}`;
 
-  button.addEventListener("click", () => {
-    selectedTheme = getNextTheme(selectedTheme);
-    applyTheme(selectedTheme);
-    writeStoredTheme(selectedTheme);
-    updateButton(button, labelSlot, stateSlot, selectedTheme);
+      input.type = "radio";
+      input.id = id;
+      input.name = "theme";
+      input.value = theme;
+      label.htmlFor = id;
+      label.textContent = themeLabels[theme];
+      option.append(input, label);
+      options.append(option);
+    });
+
+    stateSlot = document.createElement("span");
+    stateSlot.className = "visually-hidden";
+    stateSlot.id = "theme-picker-state";
+    stateSlot.setAttribute("aria-live", "polite");
+    stateSlot.setAttribute("aria-atomic", "true");
+    fieldset.append(legend, options, stateSlot);
+    nav.append(fieldset);
+  }
+
+  fieldset.hidden = false;
+
+  fieldset.querySelectorAll('input[name="theme"]').forEach((input) => {
+    input.checked = input.value === currentTheme;
+    input.addEventListener("change", () => {
+      if (!input.checked) {
+        return;
+      }
+
+      const selectedTheme = normalizeTheme(input.value);
+      applyTheme(selectedTheme);
+      writeStoredTheme(selectedTheme);
+      updateThemePicker(fieldset, stateSlot, selectedTheme);
+    });
   });
 
-  button.append(labelSlot, choicesSlot, stateSlot);
-  nav.append(button);
+  updateThemePicker(fieldset, stateSlot, currentTheme);
 }
 
 const currentTheme = normalizeTheme(readStoredTheme());
